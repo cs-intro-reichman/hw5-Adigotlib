@@ -68,28 +68,15 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        if (str.length() == 0)
-        {
-            String newstr = " ";
-            return newstr;
-        }
-        if (str.length() == 1)
-        {
-            String newstr = " " + str;
-            return newstr;
 
-        }
-        else
-        {
-            String newstr = "" +str.charAt(0);
-            for (int i = 1; i < str.length(); i++)
+            String newstr = "";
+            for (int i = 0; i <= str.length(); i++)
             {
                 newstr = newstr + " " + str.charAt(i);
             }
             return newstr;
-        }
 
-    }
+        }
   
     /**
      * Returns a string of n lowercase letters, selected randomly from 
@@ -125,6 +112,10 @@ public class MyString {
      */
     public static String remove(String str1, String str2) {
        String cleanone = "";
+       if (str2.length() == 0)
+       {
+        return str1;
+       }
        for (int i= 0; i < str1.length(); i++)
        {
             if (str2.indexOf(str1.charAt(i)) != -1)
