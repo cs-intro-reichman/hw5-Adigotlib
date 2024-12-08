@@ -8,13 +8,8 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
-        String str = "committee";
-        String str1 = "meet";
-        System.out.println(remove(str1,str));
-        System.out.println(insertRandomly('s',str1));
         //// Put your other tests here.
     }
-
     /**
      * Returns the number of times the given character appears in the given string.
      * Example: countChar("Center",'e') returns 2 and countChar("Center",'c') returns 0. 
@@ -25,6 +20,10 @@ public class MyString {
      */
     public static int countChar(String str, char ch) {
         int counter = 0;
+        if (str.length() == 0)
+        {
+            return 0;
+        }
         for (int i = 0; i < str.length(); i++)
         {
             String now= "" + str.charAt(i);
@@ -69,12 +68,27 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        String newstr = "" +str.charAt(0);
-        for (int i = 1; i < str.length(); i++)
+        if (str.length() == 0)
         {
-            newstr = newstr + " " + str.charAt(i);
+            String newstr = " ";
+            return newstr;
         }
-        return newstr;
+        if (str.length() == 1)
+        {
+            String newstr = " " + str;
+            return newstr;
+
+        }
+        else
+        {
+            String newstr = "" +str.charAt(0);
+            for (int i = 1; i < str.length(); i++)
+            {
+                newstr = newstr + " " + str.charAt(i);
+            }
+            return newstr;
+        }
+
     }
   
     /**
