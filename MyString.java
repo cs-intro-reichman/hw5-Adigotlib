@@ -9,7 +9,8 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         //// Put your other tests here.
-    }
+     }
+    
     /**
      * Returns the number of times the given character appears in the given string.
      * Example: countChar("Center",'e') returns 2 and countChar("Center",'c') returns 0. 
@@ -70,10 +71,10 @@ public class MyString {
     public static String spacedString(String str) {
         if (str.length() == 0)
         {
-            return " ";
+            return "";
         }
-        String newstr = "";
-        for (int i = 0; i < str.length(); i++)
+        String newstr = "" +str.charAt(0);
+        for (int i = 1; i < str.length(); i++)
 
             {
                 newstr = newstr + " " + str.charAt(i);
