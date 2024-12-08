@@ -68,9 +68,13 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
+        if (str.length() == 0)
+        {
+            return " ";
+        }
+        String newstr = "";
+        for (int i = 0; i < str.length(); i++)
 
-            String newstr = "";
-            for (int i = 0; i <= str.length(); i++)
             {
                 newstr = newstr + " " + str.charAt(i);
             }
@@ -116,23 +120,23 @@ public class MyString {
        {
         return str1;
        }
-       for (int i= 0; i < str1.length(); i++)
+       for (int i= 0; i < str2.length(); i++)
        {
-            if (str2.indexOf(str1.charAt(i)) != -1)
+            if (str1.indexOf(str2.charAt(i)) != -1)
             {
-                int notin= str2.indexOf(str1.charAt(i));
-                for (int z = 0; z < str2.length(); z++)
+                int notin= str1.indexOf(str2.charAt(i));
+                for (int z = 0; z < str1.length(); z++)
                 {
                     if (notin != z)
                     {
-                        cleanone = cleanone + str2.charAt(z);
+                        cleanone = cleanone + str1.charAt(z);
                     }
                 }
-                str2 = cleanone;
+                str1 = cleanone;
                 cleanone = "";
             }
        }
-        return str2;
+        return str1;
     }
 
     /**
