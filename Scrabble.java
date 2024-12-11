@@ -133,9 +133,7 @@ public class Scrabble {
 				hand = MyString.remove(input, hand);
 
 			}
-			else
-			{
-			if (input.length() == 1 && (input.charAt(0) == 'e' ^ input.charAt(0) == '.'))
+			else if (input.equals(".") || input.equals("e"))
 			{
 				System.out.println("End of hand. Total score: " + score + " points");
 				break;
@@ -144,7 +142,7 @@ public class Scrabble {
 			{
 				System.out.println("Invaild word. Try again");
 			}
-		}
+		
 			
 		}
 		if (hand.length() == 0) {
