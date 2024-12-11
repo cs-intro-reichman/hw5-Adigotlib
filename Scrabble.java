@@ -129,10 +129,10 @@ public class Scrabble {
 				if (MyString.subsetOf(input, hand)) {
 					int wordScore = wordScore(input); 
 					score += wordScore;
-					System.out.println(input + " earned " + wordScore + " points.");
+					System.out.println(input + " earned " + wordScore + " points. " + score + " points");
 					hand = MyString.remove(input, hand);  
 				} else {
-					System.out.println("Word not in hand. Try again.");
+					System.out.println("No such word in the dictionary. Try again.");
 				}
 			} 
 			else if (input.equals(".") || input.equals("e")) {
@@ -142,6 +142,7 @@ public class Scrabble {
 			else {
 				System.out.println("Invalid word. Try again.");
 			}
+			System.out.println("");
 		}
 	
 		if (hand.length() == 0) {
@@ -170,7 +171,6 @@ public class Scrabble {
 				playHand(createHand());
 			} 
 			else if (input.length() == 1 && input.charAt(0) == 'e') {
-				System.out.println("Game Over.");
 				break; 
 			} 
 			else {
