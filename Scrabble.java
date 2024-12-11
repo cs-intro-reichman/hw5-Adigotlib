@@ -115,48 +115,47 @@ public class Scrabble {
 // 3. The user is prompted to enter another word, or '.' to end the hand.
 public static void playHand(String hand) {
     int score = 0;
-    In in = new In(); // Declares the variable in to represent the stream of characters coming from the keyboard.
+    In in = new In(); // קריאה מהקלט
 
     while (hand.length() > 0) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
 
+        // קבלת קלט מהמשתמש
         String input = in.readString();
 
-        // If the word is in the dictionary and it's a valid subset of the current hand
-        if (isWordInDictionary(input)) {
+        if (input.equals(".")) {
+            // אם המשתמש מקיש "." סיום היד
+            System.out.println("End of hand. Total score: " + score + " points");
+            break;
+        }
 
+        if (isWordInDictionary(input)) {
+            // אם המילה נמצאת במילון
             if (MyString.subsetOf(input, hand)) {
+                // אם המילה נמצאת ביד
                 int wordScore = wordScore(input); 
                 score += wordScore;
                 System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
-                hand = MyString.remove(input, hand);  // Remove the letters of the word from the hand
+                hand = MyString.remove(input, hand);  // הסרת המילה מהיד
             } else {
-                System.out.println("No such word in the dictionary. Try again.");
+                // אם המילה לא נמצאת ביד
+                System.out.println("No such word in the hand. Try again.");
             }
-
-        } 
-        // Check if the user wants to end the hand
-        else if (input.equals(".") || input.equals("e")) {
-            System.out.println("End of hand. Total score: " + score + " points");
-            break;
-        } 
-        // If the word is invalid, ask the user to try again
-        else {
+        } else {
+            // אם המילה לא נמצאת במילון
             System.out.println("Invalid word. Try again.");
         }
-        System.out.println("");  // Print an empty line for readability
+
+        System.out.println("");  // רווח בין הקלטים
     }
 
-    // If all letters are used up, print the score
     if (hand.length() == 0) {
+        // אם היד נגמרה
         System.out.println("Ran out of letters. Total score: " + score + " points");
     }
-    // If the hand ends but there are still letters left, print the score
-    else {
-        System.out.println("End of hand. Total score: " + score + " points");
-    }
 }
+
 
 // Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e' to end the game.
 public static void playGame() {
