@@ -1,5 +1,7 @@
 
 
+
+
 /*
  * RUNI version of the Scrabble game.
  */
@@ -86,6 +88,7 @@ public class Scrabble {
 			which = abc.indexOf(now);
 			scoure = scoure + SCRABBLE_LETTER_VALUES[which];
 		}
+		scoure *=word.length();
 		if (word.length() == HAND_SIZE)
 		{
 			scoure = scoure + 50;
@@ -102,8 +105,8 @@ public class Scrabble {
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
 		String newstr = MyString.randomStringOfLetters(HAND_SIZE - 2);
-		MyString.insertRandomly('a', newstr);
-		MyString.insertRandomly('e', newstr);
+		newstr= MyString.insertRandomly('a', newstr);
+		newstr = MyString.insertRandomly('e', newstr);
 		return newstr;
 	}
 	
@@ -130,9 +133,18 @@ public class Scrabble {
 				hand = MyString.remove(input, hand);
 
 			}
-			if (input.equals(".") && input.equals("e")) {
+			else
+			{
+			if (input.length() == 1 && (input.charAt(0) == 'e' ^ input.charAt(0) == '.'))
+			{
+				System.out.println("End of hand. Total score: " + score + " points");
 				break;
 			}
+			else
+			{
+				System.out.println("Invaild word. Try again");
+			}
+		}
 			
 		}
 		if (hand.length() == 0) {
@@ -159,21 +171,22 @@ public class Scrabble {
 			if (input.length() == 1 && input.charAt(0) == 'n')
 			{
 				playHand(createHand());
+
 			}
 			else
 			{
-				System.out.println("error");
+				System.out.println("Invaild word. Try again");
 			}
 		}
 	}
 
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
-		////testBuildingTheDictionary();  
-		////testScrabbleScore();    
-		////testCreateHands();  
-		////testPlayHands();
-		////playGame();
+		testBuildingTheDictionary();  
+		testScrabbleScore();    
+		testCreateHands();  
+		testPlayHands();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
