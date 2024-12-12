@@ -115,13 +115,12 @@ public class Scrabble {
 // 3. The user is prompted to enter another word, or '.' to end the hand.
 public static void playHand(String hand) {
     int score = 0;
-    In in = new In(); // קריאה מהקלט
+    In in = new In(); 
 
     while (hand.length() > 0) {
         System.out.println("Current Hand: " + MyString.spacedString(hand));
         System.out.println("Enter a word, or '.' to finish playing this hand:");
 
-        // קבלת קלט מהמשתמש
         String input = in.readString();
 
         if (input.equals(".")) {
@@ -131,9 +130,7 @@ public static void playHand(String hand) {
         }
 
         if (isWordInDictionary(input)) {
-            // אם המילה נמצאת במילון
             if (MyString.subsetOf(input, hand)) {
-                // אם המילה נמצאת ביד
                 int wordScore = wordScore(input); 
                 score += wordScore;
                 System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
@@ -141,7 +138,6 @@ public static void playHand(String hand) {
 				System.out.println(""); 
             } else {
                 // אם המילה לא נמצאת ביד
-                System.out.println("Invalid word. Try again.");
 				System.out.println(""); 
             }
         } else {
