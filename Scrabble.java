@@ -132,9 +132,6 @@ public class Scrabble {
 					score += wordScore;
 					System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
 					hand = MyString.remove(hand, input);
-				} else {
-					// אם המילה לא נמצאת ביד
-					System.out.println("Invalid word. Try again.");
 				}
 			} else {
 				// אם המילה לא נמצאת במילון
@@ -146,8 +143,8 @@ public class Scrabble {
 		if (hand.length() == 0) {
 			System.out.println("Ran out of letters. Total score: " + score + " points");
 		}
-
-		}
+	}
+	
 
 
 
