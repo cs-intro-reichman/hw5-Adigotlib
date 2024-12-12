@@ -137,17 +137,19 @@ public static void playHand(String hand) {
                 int wordScore = wordScore(input); 
                 score += wordScore;
                 System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
-                hand = MyString.remove(input, hand);  // הסרת המילה מהיד
+                hand = MyString.remove(hand, input);
+				System.out.println(""); 
             } else {
                 // אם המילה לא נמצאת ביד
-                System.out.println("No such word in the hand. Try again.");
+                System.out.println("Invalid word. Try again.");
+				System.out.println(""); 
             }
         } else {
             // אם המילה לא נמצאת במילון
             System.out.println("Invalid word. Try again.");
+			System.out.println(""); 
         }
 
-        System.out.println("");  // רווח בין הקלטים
     }
 
     if (hand.length() == 0) {
