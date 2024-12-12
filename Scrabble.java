@@ -112,7 +112,7 @@ public class Scrabble {
 
 	public static void playHand(String hand) {
 		int score = 0;
-		In in = new In(); 
+		In in = new In();
 	
 		while (hand.length() > 0) {
 			System.out.println("Current Hand: " + MyString.spacedString(hand));
@@ -121,31 +121,29 @@ public class Scrabble {
 			String input = in.readString();
 	
 			if (input.equals(".")) {
-				// אם המשתמש מקיש "." סיום היד
+				// אם המשתמש מקיש ".", סיום היד
 				System.out.println("End of hand. Total score: " + score + " points");
 				break;
 			}
 	
-			if (isWordInDictionary(input)) {
-				if (MyString.subsetOf(input, hand)) {
-					int wordScore = wordScore(input); 
-					score += wordScore;
-					System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
-					hand = MyString.remove(hand, input);
-				}
+			// אם המילה חוקית
+			if (isWordInDictionary(input) && MyString.subsetOf(input, hand)) {
+				hand = MyString.remove(hand, input); // הסרת האותיות
+				score += wordScore(input); // הוספת ניקוד
+				System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points.");
+				System.out.println();
 			} else {
-				// אם המילה לא נמצאת במילון
+				// אם המילה לא חוקית
 				System.out.println("Invalid word. Try again.");
 			}
 		}
 	
-		// אם היד נגמרה
 		if (hand.length() == 0) {
+			// אם היד נגמרה
 			System.out.println("Ran out of letters. Total score: " + score + " points");
 		}
 	}
 	
-
 
 
 // Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e' to end the game.
