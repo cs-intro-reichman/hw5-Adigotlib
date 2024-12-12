@@ -145,7 +145,6 @@ public class Scrabble {
 	}
 	
 
-
 // Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e' to end the game.
 public static void playGame() {
     // Initializes the dictionary
