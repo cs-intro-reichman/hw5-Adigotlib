@@ -111,36 +111,38 @@ public class Scrabble {
 	}
 
 	public static void playHand(String hand) {
+		int n = hand.length();
 		int score = 0;
+		// Declares the variable in to refer to an object of type In, and initializes it to represent
+		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
-	
 		while (hand.length() > 0) {
 			System.out.println("Current Hand: " + MyString.spacedString(hand));
 			System.out.println("Enter a word, or '.' to finish playing this hand:");
-	
+			// Reads the next "token" from the keyboard. A token is defined as a string of 
+			// non-whitespace characters. Whitespace is either space characters, or  
+			// end-of-line characters.
 			String input = in.readString();
-	
+			//// Replace the following break statement with code
+			//// that completes the hand playing loop'
 			if (input.equals(".")) {
-				// אם המשתמש מקיש ".", סיום היד
-				System.out.println("End of hand. Total score: " + score + " points");
 				break;
 			}
-	
-			// אם המילה חוקית
-			if (isWordInDictionary(input) && MyString.subsetOf(input, hand)) {
-				hand = MyString.remove(hand, input); // הסרת האותיות
-				score += wordScore(input); // הוספת ניקוד
-				System.out.println(input + " earned " + wordScore(input) + " points. Score: " + score + " points.");
+			else if (isWordInDictionary(input) && MyString.subsetOf(input, hand)){
+				hand = MyString.remove(hand, input);
+				score += wordScore(input);
+				System.out.println(input + " earned "+ score + " points. Score: "+ score + " points");
 				System.out.println();
-			} else {
-				// אם המילה לא חוקית
+			}
+			else {
 				System.out.println("Invalid word. Try again.");
 			}
+			
 		}
-	
 		if (hand.length() == 0) {
-			// אם היד נגמרה
-			System.out.println("Ran out of letters. Total score: " + score + " points");
+	        System.out.println("Ran out of letters. Total score: " + score + " points");
+		} else {
+			System.out.println("End of hand. Total score: " + score + " points");
 		}
 	}
 	
