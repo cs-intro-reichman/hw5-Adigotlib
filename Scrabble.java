@@ -136,11 +136,9 @@ public static void playHand(String hand) {
                 System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
                 hand = MyString.remove(hand, input);
 				System.out.println(""); 
-            } else {
-                // אם המילה לא נמצאת ביד
-				System.out.println(""); 
             }
-        } else {
+        } 
+		else {
             // אם המילה לא נמצאת במילון
             System.out.println("Invalid word. Try again.");
 			System.out.println(""); 
