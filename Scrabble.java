@@ -109,48 +109,45 @@ public class Scrabble {
 		newstr = MyString.insertRandomly('e', newstr);
 		return newstr;
 	}
-	// Runs a single hand in a Scrabble game. Each time the user enters a valid word:
-// 1. The letters in the word are removed from the hand, which becomes smaller.
-// 2. The user gets the Scrabble points of the entered word.
-// 3. The user is prompted to enter another word, or '.' to end the hand.
-public static void playHand(String hand) {
-    int score = 0;
-    In in = new In(); 
 
-    while (hand.length() > 0) {
-        System.out.println("Current Hand: " + MyString.spacedString(hand));
-        System.out.println("Enter a word, or '.' to finish playing this hand:");
+	public static void playHand(String hand) {
+		int score = 0;
+		In in = new In(); 
+	
+		while (hand.length() > 0) {
+			System.out.println("Current Hand: " + MyString.spacedString(hand));
+			System.out.println("Enter a word, or '.' to finish playing this hand:");
+	
+			String input = in.readString();
+	
+			if (input.equals(".")) {
+				// אם המשתמש מקיש "." סיום היד
+				System.out.println("End of hand. Total score: " + score + " points");
+				break;
+			}
+	
+			if (isWordInDictionary(input)) {
+				if (MyString.subsetOf(input, hand)) {
+					int wordScore = wordScore(input); 
+					score += wordScore;
+					System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
+					hand = MyString.remove(hand, input);
+				} else {
+					// אם המילה לא נמצאת ביד
+					System.out.println("Invalid word. Try again.");
+				}
+			} else {
+				// אם המילה לא נמצאת במילון
+				System.out.println("Invalid word. Try again.");
+			}
+		}
+	
+		// אם היד נגמרה
+		if (hand.length() == 0) {
+			System.out.println("Ran out of letters. Total score: " + score + " points");
+		}
 
-        String input = in.readString();
-
-        if (input.equals(".")) {
-            // אם המשתמש מקיש "." סיום היד
-            System.out.println("End of hand. Total score: " + score + " points");
-            break;
-        }
-
-        if (isWordInDictionary(input)) {
-            if (MyString.subsetOf(input, hand)) {
-                int wordScore = wordScore(input); 
-                score += wordScore;
-                System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points.");
-                hand = MyString.remove(hand, input);
-				System.out.println(""); 
-            }
-        } 
-		else {
-            // אם המילה לא נמצאת במילון
-            System.out.println("Invalid word. Try again.");
-			System.out.println(""); 
-        }
-
-    }
-
-    if (hand.length() == 0) {
-        // אם היד נגמרה
-        System.out.println("Ran out of letters. Total score: " + score + " points");
-    }
-}
+		}
 
 
 
